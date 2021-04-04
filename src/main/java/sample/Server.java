@@ -41,7 +41,7 @@ public class Server implements Runnable{
     public void run() {
         while(!stopThread){
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(2000);
                     Task current = tasks.peek();
                     if(current!=null) {
                         //Thread.sleep((current.getProcessingTime())*2000);

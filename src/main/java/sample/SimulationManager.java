@@ -82,7 +82,6 @@ public class SimulationManager implements Runnable {
                 }
                 k++;
             }
-
             for(int i=0;i<scheduler.getServers().size();i++){
                 try {
                     myWriter = new FileWriter("log.txt",true);
@@ -118,10 +117,11 @@ public class SimulationManager implements Runnable {
                 }
 
             userInterface.updateQ(scheduler.getServers(),nrOfTasks);
+             userInterface.updateListOfTasks(generatedTasks,taskNumber,scheduler.getServers(),nrOfTasks);
             currentTime++;
             try {
 
-                Thread.sleep(1000);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
