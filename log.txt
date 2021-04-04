@@ -1,0 +1,65 @@
+Log of events
+Time 0
+Q0:closed
+Q1:closed
+Waiting tasks: (4, 2, 1),(3, 3, 1),(1, 7, 1),(2, 7, 2),(5, 7, 1)
+Time 1
+Q0:closed
+Q1:closed
+Waiting tasks: (4, 2, 1),(3, 3, 1),(1, 7, 1),(2, 7, 2),(5, 7, 1)
+Time 2
+Q0:(4,2,1), 
+Q1:closed
+Waiting tasks: (3, 3, 1),(1, 7, 1),(2, 7, 2),(5, 7, 1)
+Time 3
+Q0:(3,3,1), 
+Q1:closed
+Waiting tasks: (1, 7, 1),(2, 7, 2),(5, 7, 1)
+Time 4
+Q0:closed
+Q1:closed
+Waiting tasks: (1, 7, 1),(2, 7, 2),(5, 7, 1)
+Time 5
+Q0:closed
+Q1:closed
+Waiting tasks: (1, 7, 1),(2, 7, 2),(5, 7, 1)
+Time 6
+Q0:closed
+Q1:closed
+Waiting tasks: (1, 7, 1),(2, 7, 2),(5, 7, 1)
+Time 7
+Q0:(1,7,1), (5,7,1), 
+Q1:(2,7,2), 
+Waiting tasks: 
+Time 8
+Q0:(5,7,1), 
+Q1:(2,7,1), 
+Waiting tasks: 
+Time 9
+Q0:closed
+Q1:closed
+Waiting tasks: 
+Time 10
+Q0:closed
+Q1:closed
+Waiting tasks: 
+Time 11
+Q0:closed
+Q1:closed
+Waiting tasks: 
+Time 12
+Q0:closed
+Q1:closed
+Waiting tasks: 
+Time 13
+Q0:closed
+Q1:closed
+Waiting tasks: 
+Time 14
+Q0:closed
+Q1:closed
+Waiting tasks: 
+Time 15
+Q0:closed
+Q1:closed
+Waiting tasks: 
