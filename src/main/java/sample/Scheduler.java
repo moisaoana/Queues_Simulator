@@ -31,8 +31,9 @@ public class Scheduler {
         }
 
     }
-    public void dispatchTask(Task task){
-        changeStrategy(SelectionPolicy.SHORTEST_QUEUE);
+    public void dispatchTask(Task task,SelectionPolicy selectionPolicy){
+        changeStrategy(selectionPolicy);
+        //changeStrategy(SelectionPolicy.SHORTEST_TIME);
         strategy.addTask(servers,task);
 
     }

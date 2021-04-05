@@ -38,7 +38,7 @@ public class UserInterface extends Stage {
         gridPane.setStyle("-fx-background-color: burlywood");
          scrollPane=new ScrollPane();
         scrollPane.setPrefSize(1000, 500);
-        scrollPane.setFitToWidth(true);  //Adapt the content to the width of ScrollPane
+        scrollPane.setFitToWidth(true);
         scrollPane.setFitToHeight(true);
         scrollPane.setContent(gridPane);
         Scene scene = new Scene(scrollPane);

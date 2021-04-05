@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="480.0" prefWidth="352.0" style="-fx-background-color: burlywood;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <Label fx:id="titleLabel" layoutX="24.0" layoutY="14.0" prefHeight="47.0" prefWidth="279.0" style="-fx-text-fill: maroon;" text="Queues Simulator" textAlignment="CENTER" textFill="#12e042">
+         <font>
+            <Font name="Monotype Corsiva" size="42.0" />
+         </font>
+         <effect>
+            <Glow />
+         </effect>
+      </Label>
+      <Label fx:id="clientsLabel" layoutX="13.0" layoutY="92.0" style="-fx-text-fill: chocolate;" text="Number of clients:">
+         <font>
+            <Font name="Monotype Corsiva" size="21.0" />
+         </font>
+      </Label>
+      <Label fx:id="queuesLabel" layoutX="13.0" layoutY="132.0" style="-fx-text-fill: chocolate;" text="Number of queues:">
+         <font>
+            <Font name="Monotype Corsiva" size="21.0" />
+         </font>
+      </Label>
+      <Label fx:id="simulationLabel" layoutX="20.0" layoutY="172.0" style="-fx-text-fill: chocolate;" text="Simulation time:">
+         <font>
+            <Font name="Monotype Corsiva" size="21.0" />
+         </font>
+      </Label>
+      <Label fx:id="arrivalLabel" layoutX="22.0" layoutY="242.0" style="-fx-text-fill: chocolate;" text="Arrival time:">
+         <font>
+            <Font name="Monotype Corsiva" size="21.0" />
+         </font>
+      </Label>
+      <Label fx:id="processingLabel" layoutX="11.0" layoutY="286.0" style="-fx-text-fill: chocolate;" text="Processing time:">
+         <font>
+            <Font name="Monotype Corsiva" size="21.0" />
+         </font>
+      </Label>
+      <TextField fx:id="clientsTextField" layoutX="171.0" layoutY="95.0" prefHeight="25.0" prefWidth="34.0" />
+      <TextField fx:id="queuesTextField" layoutX="171.0" layoutY="134.0" prefHeight="25.0" prefWidth="34.0" />
+      <TextField fx:id="simulationTextField" layoutX="171.0" layoutY="174.0" prefHeight="25.0" prefWidth="34.0" />
+      <TextField fx:id="arrivalMinTextField" layoutX="146.0" layoutY="243.0" prefHeight="25.0" prefWidth="34.0" />
+      <TextField fx:id="arrivalMaxTextField" layoutX="197.0" layoutY="244.0" prefHeight="25.0" prefWidth="34.0" />
+      <TextField fx:id="processingMinTextField" layoutX="146.0" layoutY="286.0" prefHeight="28.0" prefWidth="34.0" />
+      <TextField fx:id="processingMaxTextField" layoutX="197.0" layoutY="286.0" prefHeight="28.0" prefWidth="34.0" />
+      <Label fx:id="minLabel" layoutX="145.0" layoutY="213.0" style="-fx-text-fill: firebrick;" text="MIN">
+         <font>
+            <Font name="Monotype Corsiva" size="19.0" />
+         </font>
+      </Label>
+      <Label fx:id="maxLabel" layoutX="195.0" layoutY="213.0" style="-fx-text-fill: firebrick;" text="MAX">
+         <font>
+            <Font name="Monotype Corsiva" size="19.0" />
+         </font>
+      </Label>
+      <Button fx:id="simulateButton" layoutX="30.0" layoutY="383.0" mnemonicParsing="false" onAction="#clickSimulate" prefHeight="34.0" prefWidth="105.0" style="-fx-background-color: maroon;" text="Simulate" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Monotype Corsiva" size="17.0" />
+         </font>
+      </Button>
+      <Label fx:id="errorLabel" layoutX="42.0" layoutY="431.0" prefHeight="29.0" prefWidth="96.0" text="Time error!" textFill="#dd4040" visible="false">
+         <font>
+            <Font name="Monotype Corsiva" size="22.0" />
+         </font>
+      </Label>
+      <Button fx:id="clearButton" layoutX="153.0" layoutY="383.0" mnemonicParsing="false" onAction="#clickClear" prefHeight="34.0" prefWidth="105.0" style="-fx-background-color: maroon;" text="Clear" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Monotype Corsiva" size="17.0" />
+         </font>
+      </Button>
+      <Label fx:id="emptyFieldsLabel" layoutX="47.0" layoutY="431.0" prefHeight="29.0" prefWidth="166.0" text="Error: Empty fields!" textFill="#dd4040" visible="false">
+         <font>
+            <Font name="Monotype Corsiva" size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="strategyLabel" layoutX="22.0" layoutY="321.0" style="-fx-text-fill: chocolate;" text="Strategy:">
+         <font>
+            <Font name="Monotype Corsiva" size="21.0" />
+         </font>
+      </Label>
+      <TextField fx:id="strategyTextField" layoutX="145.0" layoutY="321.0" prefHeight="28.0" prefWidth="137.0" />
+      <Label fx:id="errorStrategyLabel" layoutX="24.0" layoutY="431.0" prefHeight="29.0" prefWidth="229.0" text="Error: Incorrect strategy!" textFill="#dd4040" visible="false">
+         <font>
+            <Font name="Monotype Corsiva" size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="detailsLabel" layoutX="104.0" layoutY="349.0" prefHeight="28.0" prefWidth="221.0" style="-fx-text-fill: maroon;" text="(SHORTEST_TIME / SHORTEST_QUEUE)">
+         <font>
+            <Font name="Monotype Corsiva" size="13.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

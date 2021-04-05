@@ -19,7 +19,7 @@ public class Main extends Application {
         URL url=new File("src/main/java/sample/View.fxml").toURI().toURL();
         Parent root=FXMLLoader.load(url);
         primaryStage.setTitle("Queues Simulator");
-        primaryStage.setScene(new Scene(root, 300, 500));
+        primaryStage.setScene(new Scene(root, 350, 500));
         primaryStage.show();
     }
 
