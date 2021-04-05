@@ -8,10 +8,12 @@ public class Server implements Runnable{
     private BlockingQueue<Task>tasks;
     private AtomicInteger waitingPeriod;
     private boolean stopThread;
+    private int currentTime;
     public Server(int maxSize){
         this.waitingPeriod=new AtomicInteger(0);
         this.tasks=new ArrayBlockingQueue<Task>(maxSize);
         this.stopThread=false;
+        this.currentTime=0;
     }
 
     public BlockingQueue<Task> getTasks() {
@@ -29,6 +31,10 @@ public class Server implements Runnable{
         this.stopThread = stopThread;
     }
 
+    public void setCurrentTime(int currentTime) {
+        this.currentTime = currentTime;
+    }
+
     public void addTaskToQueue(Task newTask)  {
         try {
             this.tasks.put(newTask);
@@ -44,6 +50,9 @@ public class Server implements Runnable{
                     Thread.sleep(2000);
                     Task current = tasks.peek();
                     if(current!=null) {
+                        if(current.getWaitingTime()==-1){
+                            current.setWaitingTime(currentTime);
+                        }
                         //Thread.sleep((current.getProcessingTime())*2000);
                             current.setProcessingTime(current.getProcessingTime()-1);
                         if(current.getProcessingTime()==0) {

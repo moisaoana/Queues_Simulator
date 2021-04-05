@@ -85,7 +85,5 @@ public class Controller {
             Thread thread=new Thread(simulationManager);
             thread.start();
         }
-
-        //new UserInterface();
     }
 }

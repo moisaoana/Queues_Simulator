@@ -19,6 +19,8 @@ public class SimulationManager implements Runnable {
     private UserInterface userInterface;
     private FileWriter myWriter=null;
     private int taskNumber;
+    private double averageServiceTime;
+    private int tasksInServersPerTime[];
     public SimulationManager(int nrOfServers, int nrOfTasks, int simulationTime, int minArrivalTime,int maxArrivalTime,int minProcessingTime, int maxProcessingTime){
         this.nrOfServers=nrOfServers;
         this.nrOfTasks=nrOfTasks;
@@ -44,6 +46,16 @@ public class SimulationManager implements Runnable {
             e.printStackTrace();
         }
         taskNumber=-1;
+        double sumServiceTimes=0;
+        for(Task task: generatedTasks){
+            sumServiceTimes+=task.getProcessingTime();
+        }
+        averageServiceTime=sumServiceTimes/nrOfTasks;
+        tasksInServersPerTime=new int[simulationTime];
+        for(int i=0;i<simulationTime;i++){
+            tasksInServersPerTime[i]=0;
+        }
+
     }
     public void generateRandomTasks(){
         for(int i=0;i<nrOfTasks;i++) {
@@ -59,12 +71,16 @@ public class SimulationManager implements Runnable {
             System.out.println(generatedTasks.get(i).getID()+" "+generatedTasks.get(i).getArrivalTime()+" "+generatedTasks.get(i).getProcessingTime());
         }
 
+
     }
     @Override
     public void run() {
         int currentTime=0;
-        while(currentTime<=simulationTime){
+        while(currentTime<simulationTime){
             System.out.println("Current time:"+currentTime);
+            for(Server server:scheduler.getServers()){
+                server.setCurrentTime(currentTime);
+            }
             try {
                 myWriter = new FileWriter("log.txt",true);
                 myWriter.write("Time "+currentTime+"\n");
@@ -98,6 +114,7 @@ public class SimulationManager implements Runnable {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                tasksInServersPerTime[currentTime]+=scheduler.getServers().get(i).getTasks().size();
             }
                 try {
                     myWriter = new FileWriter("log.txt",true);
@@ -128,6 +145,35 @@ public class SimulationManager implements Runnable {
         }
         for(Server server: scheduler.getServers()){
             server.setStopThread(true);
+        }
+        try {
+            myWriter = new FileWriter("log.txt",true);
+            myWriter.write("Average service time: "+averageServiceTime+"\n");
+            int peakClients=0;//,peakHour=0;
+            for(int i=0;i<simulationTime;i++){
+                if(tasksInServersPerTime[i]>peakClients){
+                    peakClients=tasksInServersPerTime[i];
+                    //peakHour=i;
+                }
+            }
+            myWriter.write("Peak hour(s): ");
+            for(int i=0;i<simulationTime;i++){
+                if(peakClients==tasksInServersPerTime[i]){
+                    myWriter.write(i+", ");
+                }
+            }
+            double sumWaitingTimes=0;
+            for(Task task: generatedTasks){
+                task.setWaitingTime(task.getWaitingTime()-task.getArrivalTime());
+                sumWaitingTimes+=task.getWaitingTime();
+                System.out.println(task.getID()+" "+task.getWaitingTime());
+            }
+            double averageWaitingTime=sumWaitingTimes/nrOfTasks;
+            myWriter.write("\nAverage waiting time: "+averageWaitingTime);
+            myWriter.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
