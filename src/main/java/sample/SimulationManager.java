@@ -91,7 +91,6 @@ public class SimulationManager implements Runnable {
                 tasksProcessed++;
                 task.setWaitingTime(task.getWaitingTime() - task.getArrivalTime());
                 sumWaitingTimes += task.getWaitingTime();
-                System.out.println(task.getID() + " " + task.getWaitingTime());
             }
         }
         return sumWaitingTimes/tasksProcessed;
