@@ -42,9 +42,9 @@
             <Font name="Monotype Corsiva" size="21.0" />
          </font>
       </Label>
-      <TextField fx:id="clientsTextField" layoutX="171.0" layoutY="95.0" prefHeight="25.0" prefWidth="34.0" />
-      <TextField fx:id="queuesTextField" layoutX="171.0" layoutY="134.0" prefHeight="25.0" prefWidth="34.0" />
-      <TextField fx:id="simulationTextField" layoutX="171.0" layoutY="174.0" prefHeight="25.0" prefWidth="34.0" />
+      <TextField fx:id="clientsTextField" layoutX="171.0" layoutY="95.0" prefHeight="25.0" prefWidth="48.0" />
+      <TextField fx:id="queuesTextField" layoutX="171.0" layoutY="134.0" prefHeight="25.0" prefWidth="48.0" />
+      <TextField fx:id="simulationTextField" layoutX="171.0" layoutY="174.0" prefHeight="25.0" prefWidth="48.0" />
       <TextField fx:id="arrivalMinTextField" layoutX="146.0" layoutY="243.0" prefHeight="25.0" prefWidth="34.0" />
       <TextField fx:id="arrivalMaxTextField" layoutX="197.0" layoutY="244.0" prefHeight="25.0" prefWidth="34.0" />
       <TextField fx:id="processingMinTextField" layoutX="146.0" layoutY="286.0" prefHeight="28.0" prefWidth="34.0" />

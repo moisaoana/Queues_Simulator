@@ -30,13 +30,13 @@ public class UserInterface extends Stage {
         gridPane = new GridPane();
         gridPane.setVgap(5);
         gridPane.setHgap(5);
-        time=new Text("0");
+        time=new Text("Time: 0");
         gridPane.add(time,2,0);
         this.setWidth(1000);
         this.setHeight(500);
         this.setTitle("Queues Simulator");
         gridPane.setStyle("-fx-background-color: burlywood");
-         scrollPane=new ScrollPane();
+        scrollPane=new ScrollPane();
         scrollPane.setPrefSize(1000, 500);
         scrollPane.setFitToWidth(true);
         scrollPane.setFitToHeight(true);
@@ -44,7 +44,6 @@ public class UserInterface extends Stage {
         Scene scene = new Scene(scrollPane);
         this.setScene(scene);
         this.show();
-
     }
     public  void displayQueues(int n){
         for(int i=0;i<n;i++){
@@ -57,9 +56,9 @@ public class UserInterface extends Stage {
         }
     }
     public void changeTime(String n){
-        styleText(time,30);
-        time.setText("Time: "+n);
-        scrollPane.setContent(gridPane);
+        Platform.runLater(()->styleText(time,30));
+        Platform.runLater(()->time.setText("Time: "+n));
+        Platform.runLater(()->scrollPane.setContent(gridPane));
     }
     public static void styleText(Text text, int font) {
         text.setFont(Font.font("Arial", FontWeight.BOLD, font));
@@ -80,12 +79,14 @@ public class UserInterface extends Stage {
                 hBox.setBackground(new Background(new BackgroundFill(Color.MAROON,null,null)));
                 Platform.runLater(()->gridPane.getChildren().removeIf(node -> GridPane.getRowIndex(node) == finalI+1 && GridPane.getColumnIndex(node)==finalPos));
                 Platform.runLater(()->gridPane.add(hBox, finalPos, finalI +1));
+                Platform.runLater(()->scrollPane.setContent(gridPane));
                 pos++;
             }
             for(int j=servers.get(i).getTasks().size();j<maxNrTasksPerQueue;j++){
                 int finalPos = pos;
                 int finalI = i;
                 Platform.runLater(()->gridPane.getChildren().removeIf(node -> GridPane.getRowIndex(node) == finalI+1 && GridPane.getColumnIndex(node)==finalPos));
+                Platform.runLater(()->scrollPane.setContent(gridPane));
                 pos++;
             }
         }
@@ -104,6 +105,7 @@ public class UserInterface extends Stage {
             hBox.setBackground(new Background(new BackgroundFill(Color.CHOCOLATE,null,null)));
             Platform.runLater(()->gridPane.getChildren().removeIf(node -> GridPane.getRowIndex(node) == finalI+1 && GridPane.getColumnIndex(node)==finalPos));
             Platform.runLater(()->gridPane.add(hBox, finalPos, finalI +1));
+            Platform.runLater(()->scrollPane.setContent(gridPane));
             pos++;
 
         }
@@ -111,7 +113,7 @@ public class UserInterface extends Stage {
             int finalPos = k+2;
             int finalI = servers.size()+1;
             Platform.runLater(()->gridPane.getChildren().removeIf(node -> GridPane.getRowIndex(node) == finalI+1 && GridPane.getColumnIndex(node)==finalPos));
-           // pos++;
+            Platform.runLater(()->scrollPane.setContent(gridPane));
         }
     }
 }

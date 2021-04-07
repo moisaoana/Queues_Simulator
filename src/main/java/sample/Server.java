@@ -47,14 +47,13 @@ public class Server implements Runnable{
     public void run() {
         while(!stopThread){
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(1000);
                     Task current = tasks.peek();
                     if(current!=null) {
                         if(current.getWaitingTime()==-1){
                             current.setWaitingTime(currentTime);
                         }
-                        //Thread.sleep((current.getProcessingTime())*2000);
-                            current.setProcessingTime(current.getProcessingTime()-1);
+                        current.setProcessingTime(current.getProcessingTime()-1);
                         if(current.getProcessingTime()==0) {
                             this.tasks.take();
                             waitingPeriod.getAndDecrement();

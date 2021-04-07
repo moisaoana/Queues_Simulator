@@ -43,18 +43,14 @@ public class Controller {
     private Button simulateButton;
     @FXML
     private Label errorLabel;
-
     @FXML
     private Label emptyFieldsLabel;
-
     @FXML
     private Button clearButton;
     @FXML
     private Label strategyLabel;
-
     @FXML
     private TextField strategyTextField;
-
     @FXML
     private Label errorStrategyLabel;
     @FXML
@@ -95,7 +91,7 @@ public class Controller {
                 if (minProcT >= maxProcT) {
                     errorLabel.setVisible(true);
                 }else{
-                    if(minProcT<0 || minArrivalT<0 || simulationT<0 || maxArrivalT>simulationT || maxProcT>simulationT){
+                    if(clients<=0|| queues<=0 ||minProcT<0 || minArrivalT<0 || simulationT<=0 || maxArrivalT>simulationT || maxProcT>simulationT){
                         errorLabel.setVisible(true);
                     }else{
                         SelectionPolicy selectionPolicy=SelectionPolicy.SHORTEST_QUEUE;
@@ -110,7 +106,6 @@ public class Controller {
                             thread.start();
                         }
                     }
-
                 }
             }
         }

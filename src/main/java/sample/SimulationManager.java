@@ -46,7 +46,8 @@ public class SimulationManager implements Runnable {
         for(Task task: generatedTasks){
             sumServiceTimes+=task.getProcessingTime();
         }
-        averageServiceTime=sumServiceTimes/nrOfTasks;
+        averageServiceTime=sumServiceTimes;
+        System.out.println(averageServiceTime);
         tasksInServersPerTime=new int[simulationTime];
         for(int i=0;i<simulationTime;i++){
             tasksInServersPerTime[i]=0;
@@ -71,9 +72,34 @@ public class SimulationManager implements Runnable {
             server.setCurrentTime(currentTime);
         }
     }
+    public void getAverageServiceTime(){
+        int servedClients=nrOfTasks;
+        for(Task task: generatedTasks){
+            if(task.getProcessingTime()!=0){
+                if(task.getWaitingTime()==-1) {
+                    servedClients--;
+                }
+                averageServiceTime-=task.getProcessingTime();
+            }
+        }
+        averageServiceTime=averageServiceTime/servedClients;
+    }
+    public double getAverageWaitingTime(){
+        double sumWaitingTimes=0,tasksProcessed=0;
+        for(Task task: generatedTasks){
+            if(task.getWaitingTime()!=-1) {
+                tasksProcessed++;
+                task.setWaitingTime(task.getWaitingTime() - task.getArrivalTime());
+                sumWaitingTimes += task.getWaitingTime();
+                System.out.println(task.getID() + " " + task.getWaitingTime());
+            }
+        }
+        return sumWaitingTimes/tasksProcessed;
+    }
     public void computeStatistic(){
         try {
             myWriter = new FileWriter("log.txt",true);
+            getAverageServiceTime();
             myWriter.write("Average service time: "+averageServiceTime+"\n");
             int peakClients=0;
             for(int i=0;i<simulationTime;i++){
@@ -87,13 +113,7 @@ public class SimulationManager implements Runnable {
                     myWriter.write(i+", ");
                 }
             }
-            double sumWaitingTimes=0;
-            for(Task task: generatedTasks){
-                task.setWaitingTime(task.getWaitingTime()-task.getArrivalTime());
-                sumWaitingTimes+=task.getWaitingTime();
-                System.out.println(task.getID()+" "+task.getWaitingTime());
-            }
-            double averageWaitingTime=sumWaitingTimes/nrOfTasks;
+            double averageWaitingTime=getAverageWaitingTime();
             myWriter.write("\nAverage waiting time: "+averageWaitingTime);
             myWriter.close();
         } catch (IOException e) {
@@ -154,7 +174,6 @@ public class SimulationManager implements Runnable {
     public void run() {
         int currentTime=0;
         while(currentTime<simulationTime){
-            //System.out.println("Current time:"+currentTime);
             setServersCurrentTime(currentTime);
             writeTime(currentTime);
             userInterface.changeTime(String.valueOf(currentTime));
@@ -175,7 +194,7 @@ public class SimulationManager implements Runnable {
             userInterface.updateListOfTasks(generatedTasks,taskNumber,scheduler.getServers(),nrOfTasks);
             currentTime++;
             try {
-                Thread.sleep(2000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

@@ -29,12 +29,9 @@ public class Scheduler {
         if(selectionPolicy==SelectionPolicy.SHORTEST_TIME){
             strategy=new ConcreteStrategyTime();
         }
-
     }
     public void dispatchTask(Task task,SelectionPolicy selectionPolicy){
         changeStrategy(selectionPolicy);
-        //changeStrategy(SelectionPolicy.SHORTEST_TIME);
         strategy.addTask(servers,task);
-
     }
 }
